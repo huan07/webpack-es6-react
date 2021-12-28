@@ -1,6 +1,6 @@
 // ! 优先用代码量少的方法
 
-// 嵌套的数组扁平化 // !
+// 嵌套的数组扁平化
 {
   function flatArray(arr) {
     return arr.reduce((result, curr) => {
@@ -12,7 +12,7 @@
   }
 
   function* flatArray2(arr) {
-    for (let i = 0, len = arr.length; i < len; i++) {
+    for (let i = 0; i < arr.length; i++) {
       const item = arr[i];
       if (Array.isArray(item)) {
         yield* flatArray2(item);
@@ -22,10 +22,11 @@
     }
   }
 
+  // ! good 嵌套的数组扁平化
   function* flatArray3(arr) {
     if (Array.isArray(arr)) {
       for (let item of arr) {
-        yield* flatArray3(item); // ? ? ?
+        yield* flatArray3(item);
       }
     } else {
       yield arr;
@@ -34,19 +35,20 @@
 
   // test
   const arr = [1, [2, 3, [4, 5, 6]]];
-
-  const result = arr.flat(Infinity);
-  const result2 = flatArray(arr);
-  const result3 = [...flatArray2(arr)];
-
-  console.error('flatArray =>', result, result2, result3, [...flatArray3(arr)]);
+  console.log(
+    'flatArray =>',
+    arr.flat(Infinity),
+    flatArray(arr),
+    [...flatArray2(arr)],
+    [...flatArray3(arr)],
+  );
 }
 
 // 数组去重
 {
   function uniqueArray(arr) {
     return arr.reduce((result, curr) => {
-      // !或者用for ... of遍历
+      // ! 或者用for ... of遍历
       // todo 好不好，性能问题，可用吗？
       if (!result.includes(curr)) {
         result.push(curr);

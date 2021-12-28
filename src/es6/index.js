@@ -2,7 +2,7 @@
 // import './let-interview';
 
 // import './array';
-import './array-interview';
+// import './array-interview';
 
 // import './Symbol';
 // import './Set';
@@ -19,7 +19,7 @@ import './array-interview';
 // import './Promise-interview/2';
 
 // import './Iterator';
-// import './Generator';
+import './Generator';
 // import './generator-async';
 // import './async';
 // import './async-interview'

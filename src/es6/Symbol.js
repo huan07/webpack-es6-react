@@ -1,7 +1,3 @@
-/**
- * Created by yangHuan on 17/10/17.
- */
-
 // 对象的属性名有两种类型
 // 1.字符串
 // 2.Symbol 类型，独一无二的值，不会与其他属性名产生冲突
@@ -67,25 +63,15 @@
   }
 
   const triangleArea = getArea(shapeType.triangle, { width: 20, height: 10 });
-  const rectangleArea = getArea(shapeType.rectangle, { width: 20, height: 10 });
   const xArea = getArea(shapeType.x, { width: 20, height: 10 });
-  console.log(
-    'triangleArea, rectangleArea, xArea =>',
-    triangleArea,
-    rectangleArea,
-    xArea,
-  );
+  console.log('triangleArea, xArea =>', triangleArea, xArea);
 }
 
-// 4.
 // Object.getOwnPropertySymbols()
 {
-  const fooBar = Symbol('fooBar');
-  const fooBarUenum = Symbol('fooBarUenum'); // 定义为不可枚举
   const obj = {
     fooBar: '1',
-
-    [fooBar]: '3',
+    [Symbol('fooBar')]: '3',
   };
 
   Object.defineProperty(obj, 'fooBarUenum', {
@@ -93,7 +79,7 @@
     enumerable: false,
   });
 
-  Object.defineProperty(obj, fooBarUenum, {
+  Object.defineProperty(obj, Symbol('fooBarUenum'), {
     value: '4',
     enumerable: false,
   });
@@ -105,7 +91,7 @@
   }
 
   const keys = Object.keys(obj);
-  console.log('对象 可枚举 实例属性 keys =>', keys);
+  console.error('对象 可枚举 实例属性 keys =>', keys);
 
   const names = Object.getOwnPropertyNames(obj);
   console.log('对象 可枚举＋不可枚举 自身属性 names =>', names);
@@ -119,7 +105,7 @@
 
 // Symbol.for()，Symbol.keyFor()
 {
-  let s1 = Symbol.for('foo'); // 被登记在全局环境供搜索
+  let s1 = Symbol.for('foo'); // ! 被登记在全局环境中供搜索
   let s2 = Symbol.for('foo');
   console.log(s1 === s2, Symbol.keyFor(s1), Symbol.keyFor(s2));
 
@@ -127,16 +113,6 @@
   let s4 = Symbol('FOO');
   console.log(s3 === s4, Symbol.keyFor(s3), Symbol.keyFor(s4));
 }
-
-{
-  const iframe = document.createElement('iframe');
-  iframe.src = String(window.location);
-  //document.body.appendChild(iframe);
-  //console.warn(iframe.contentWindow.Symbol.for('foo') === Symbol.for('foo'), Symbol.for('foo'));
-}
-
-// 7.内置的Symbol值
-// to add
 
 // Symbol.iterator => 该对象的默认遍历器方法
 // for...of循环时，会调用Symbol.iterator方法
@@ -148,23 +124,4 @@
     yield 3;
   };
   console.log('Symbol.iterator =>', [...myIterable]);
-}
-{
-  class Collection {
-    *[Symbol.iterator]() {
-      let i = 0;
-      while (this[i] !== undefined) {
-        yield this[i];
-        ++i;
-      }
-    }
-  }
-
-  let myCollection = new Collection();
-  myCollection[0] = 1;
-  myCollection[1] = 2;
-
-  for (let value of myCollection) {
-    console.log('value =>', value);
-  }
 }

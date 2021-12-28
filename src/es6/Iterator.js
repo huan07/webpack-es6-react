@@ -13,7 +13,8 @@
   }
 
   var it = makeIterator(['a', 'b']);
-  console.log(it, it.next());
+  console.log(it);
+  console.log(it.next());
   console.log(it.next());
   console.log(it.next());
 }
@@ -24,8 +25,8 @@
 
 // Set / Map 数据结构
 
-// arguments
-// NodeList
+// 函数的 arguments 对象
+// NodeList 对象
 {
   let arr = ['a', 'b'];
   let iter = arr[Symbol.iterator]();
@@ -60,30 +61,12 @@
 }
 
 // (3)yield*
-{
-  const generator = function* () {
-    yield 1;
-    yield* [2, 3]; // yield* 后面跟的是一个可遍历的数据结构，它会调用该结构的遍历器接口
-    yield 4;
-  };
+// 参照底部
 
-  const it = generator();
-  console.warn('it.next() it =>', it);
-  console.log(it.next(), it.next(), it.next(), it.next(), it.next());
-
-  // for...of 遍历 遍历器对象，无需手动调用遍历器对象的 next 方法 // !
-  const it_2 = generator();
-  for (let i of it_2) {
-    console.log(i);
-  }
-
-  console.log('[...generator()] =>', [...generator()]);
-}
-
-// 6. 遍历器对象的 return()，throw() // TODO ...
+// 6. 遍历器对象的 return()，throw() // todo ...
 
 // 7. for...of
-// 可以代替 forEach
+// 可以代替forEach方法
 {
   const arr = ['red', 'green', 'blue'];
 
@@ -103,18 +86,15 @@
 
   for (let key in arr) {
     // 区别二：for...in 循环不仅遍历 数字键名 ，还会遍历手动添加的 其他键名 ，甚至包括 原型链上的键名
-    console.log('let key in arr =>', key);
+    console.error('let key in arr =>', key);
   }
 
   for (let item of arr.keys()) {
-    console.log('let item of arr.keys() =>', item); //区别二：for...of 循环只遍历 数字键名 // !
-  }
-
-  for (let item of arr) {
-    console.log('item =>', item);
+    console.log('let item of arr.keys() =>', item); // 区别二：for...of 循环只遍历 数字键名 // !
   }
 }
 
+//
 // for...of 与其他遍历语法的比较
 // for 循环, 比较麻烦。
 // forEach 方法, 无法中途跳出 forEach 循环，不能与 break、continue 和 return 配合使用。 // !
@@ -136,10 +116,29 @@
   const fibonacciGen = fibonacci();
   for (let i of fibonacciGen) {
     if (i >= 6) {
-      break; // ! 可以中途跳出循环
+      break; // 可以中途跳出循环
     }
     result.push(i);
   }
 
   console.log(result);
+}
+
+{
+  const generator = function* () {
+    yield 1;
+    yield* [2, 3]; // yield* 后面跟的是一个 可遍历的数据结构 ，它会调用该结构的遍历器接口
+    yield 4;
+  };
+
+  const it = generator();
+  console.log(it.next(), it.next(), it.next(), it.next(), it.next()); // ! 第1种遍历方式
+
+  // for...of 遍历 遍历器对象，无需手动调用遍历器对象的 next 方法
+  // ! 第2种遍历方式
+  for (let i of generator()) {
+    console.log(i);
+  }
+
+  console.log('[...generator()] =>', [...generator()]); // ! 第3种遍历方式
 }
