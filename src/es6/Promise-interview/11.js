@@ -1,7 +1,7 @@
 // Promise 新建后就会立即执行。// !
 const promise = new Promise((resolve, reject) => {
   // 同步
-  resolve();
+  resolve(); // 调用resolve或reject并不会终结 Promise 的参数函数的执行
   console.warn('1. new Promise 构造函数立即执行');
 });
 

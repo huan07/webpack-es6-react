@@ -16,7 +16,7 @@ Promise.all([14, 152].map((item) => getJSON(`../assets/${item}.json`))).catch(
 
 {
   // 作为参数的 Promise 实例，
-  // 1.自己定义了 catch 方法，那么它一旦被 rejected，并不会触发 Promise.all() 的 catch 方法 // ! better
+  // 1.自己定义了 catch 方法，那么它一旦被 rejected，并不会触发 Promise.all() 的 catch 方法 // ! good
   // 2.没有自己的 catch 方法，就会调用 Promise.all() 的 catch 方法
   const promiseItem = getJSON(`../assets/14.json`).then((v) => 'v');
 
@@ -28,9 +28,9 @@ Promise.all([14, 152].map((item) => getJSON(`../assets/${item}.json`))).catch(
     // return 'promiseItem2 catched';
   });
 
-  console.warn('=> promiseItem, promiseItem2 =>', promiseItem, promiseItem2);
+  console.warn('promiseItem, promiseItem2 =>', promiseItem, promiseItem2);
 
   Promise.all([promiseItem, promiseItem2]).then(([v, v2]) => {
-    console.warn('=> ', v, v2);
+    console.warn(v, v2);
   });
 }

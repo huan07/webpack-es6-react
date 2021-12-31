@@ -4,7 +4,7 @@ import getJSON from './foo/getJSON';
   function timeout(ms) {
     return new Promise((resolve, reject) => {
       // ! resolve 函数接受的参数，传递给 then 方法的回调函数
-      setTimeout(resolve, ms, 'resolve-done');
+      setTimeout(resolve, ms, 'resolve-done-params');
     });
   }
 
@@ -43,7 +43,7 @@ const ajaxInstance = getJSON('../assets/14.json');
 
   const p3 = p2.then((v) => v); // !! 2.前面 then 方法的返回值，传递给 后面链式调用 then 方法的回调函数
 
-  console.error(
+  console.log(
     'ajaxInstance =>',
     ajaxInstance,
     ajaxInstance === p2,
@@ -60,11 +60,11 @@ const ajaxInstance = getJSON('../assets/14.json');
 //
 //
 //
-// Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。
-// 也就是说，错误总是会被下一个 catch 语句捕获。(推荐用 catch 方法，不用 .then 方法的第二个参数) // ! better // 捕获到错误后，下级then方法不去执行
+// Promise 对象的错误具有 “冒泡”性质 ，会一直向后传递，直到被捕获为止。
+// 也就是说，错误总是会被下一个 catch 语句捕获。(推荐用 catch 方法，不用 .then 方法的第二个参数) // ! good 捕获到错误后，下级then方法不去执行
 // 其中可以是
-// 产生 Promise 对象内部语法错误、
-// 前一个回调函数运行时发生的错误
+// 1.产生 Promise 对象内部语法错误、
+// 2.前一个回调函数运行时发生的错误
 {
   const test = () => {
     ajaxInstance
@@ -90,6 +90,7 @@ const ajaxInstance = getJSON('../assets/14.json');
         return 'b';
       })
       .catch((err) => {
+        // ! good
         console.error('| | | | err “冒泡”性质 =>', err);
       });
   };

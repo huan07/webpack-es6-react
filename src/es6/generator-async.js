@@ -6,10 +6,9 @@
 // Thunk 函数替换的不是表达式，而是多参数函数，将其替换成一个只接受回调函数作为参数的单参数函数
 
 // Thunk 函数现在可以用于 Generator 函数的自动流程管理
-// Generator 函数可以自动执行，用 while 循环实现，但是，这不适合异步操作
 {
+  // run 函数，就是一个 Generator 函数的自动执行器
   function run(fn) {
-    // run 函数，就是一个 Generator 函数的自动执行器
     var gen = fn();
 
     function next(err, data) {
@@ -17,25 +16,26 @@
       if (result.done) {
         return;
       }
-      result.value(next);
+      result.value(next); // ? ?
     }
 
     next();
   }
 
   function* g() {
-    yield () => {
+    yield (() => {
       console.log(1);
       //return 1;
-    };
-    yield () => {
+    })();
+    yield (() => {
       console.log(2);
       //return 2;
-    };
+    })();
+    console.log(3);
     return;
   }
 
-  run(g);
+  // run(g);
 }
 
 // co 模块可以自动执行 Generator 函数
@@ -45,7 +45,7 @@
 {
   const fs = {
     readFile(fileName, callback) {
-      //console.log(fileName, callback)
+      // console.log(fileName, callback)
       callback();
     },
   };
@@ -73,6 +73,7 @@
   g.next({ f1: 'f4' });
   g.next({ f2: 'f5' });
 
+  // 方式2
   // ! 手动执行其实就是用then方法，层层添加回调函数
   {
     const g2 = gen('g2');
@@ -83,6 +84,7 @@
     });
   }
 
+  // 方式3
   // ! best 写出一个自动执行器
   {
     function run(gen) {
