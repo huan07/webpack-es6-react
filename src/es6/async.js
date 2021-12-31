@@ -178,10 +178,10 @@ const urls = ['../assets/14.json', '../assets/15.json', '../assets/16.json'];
           });
       }, Promise.resolve());
 
-      // ? 为啥需要多写一层then
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 为啥需要多写一层then
       idPromises.reduce((chain, curr) => {
         return chain.then(() => {
-          console.error('? 为啥需要多写一层then =>', curr, Date.now());
+          console.error('? curr 指的是Promise实例 =>', curr, Date.now());
         });
       }, Promise.resolve());
     }
