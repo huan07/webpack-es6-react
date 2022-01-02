@@ -29,16 +29,13 @@
   console.log(point, point.toString());
   console.log(colorPoint, colorPoint.toString());
 
-  console.warn('Object.getPrototypeof() =>');
-  console.log(
-    Object.getPrototypeOf(point),
-    '\n',
-    Object.getPrototypeOf(colorPoint),
-    '\n',
-    Object.getPrototypeOf(ColorPoint),
+  console.warn(
+    'Object.getPrototypeof() =>',
+    Object.getPrototypeOf(ColorPoint) === Point,
   );
 }
 
+// todo 后面继续看看
 // super
 // 1.作为函数时，只能用在子类的构造函数中
 // 2.作为对象 // TODO ...
