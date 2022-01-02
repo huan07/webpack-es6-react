@@ -18,18 +18,18 @@ import getJSON from './foo/getJSON';
 // 另外需要注意，yield 表达式只能用在 Generator 函数里面，用在其他地方都会报错
 // * 数组扁平化，参照面试题
 
-// yield 表达式如果用在另一个表达式之中，必须放在圆括号里面 // todo !
+// yield 表达式如果用在另一个表达式之中，必须放在圆括号里面 // !
 {
   function* demo() {
     console.error('hello ' + (yield));
-    console.error('world ' + (yield 123)); // yield 表达式本身没有返回值，或者说总是返回 undefined // todo !
+    console.error('world ' + (yield 123)); // yield 表达式本身没有返回值，或者说总是返回 undefined // !
   }
 
   let generator = demo();
 
   generator.next();
   generator.next();
-  generator.next();
+  generator.next(); // ? 需要3次next调用
 }
 
 // yield* 表达式：返回的是一个 遍历器对象

@@ -1,6 +1,8 @@
 // import './let';
 // import './let-interview';
 
+// import './destructuring';
+
 // import './array';
 // import './array-interview';
 
@@ -22,5 +24,8 @@
 // import './Iterator';
 // import './Generator';
 // import './generator-async';
-import './async';
+// import './async';
 // import './async-interview'
+
+// import './class';
+import './class-extends';

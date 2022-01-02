@@ -1,25 +1,25 @@
 import getJSON from './foo/getJSON';
 
-// async 函数的返回值是 Promise 对象，可以用 then 方法指定下一步的操作 // ! 1.
-// await 命令后面，可以是 Promise 对象和原始类型的值 // ! 2.
+// async 函数的返回值是Promise对象，可以用then方法指定下一步的操作 // ! 1.
+// await 命令后面，可以是 Promise对象 和 原始类型的值 // ! 2.
 function timeout(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
-    // console.warn('1');
   });
 }
 
 async function timeout2(ms) {
   await new Promise((resolve) => {
     setTimeout(resolve, ms);
-    console.warn('2');
   });
 }
 
 {
   async function asyncPrint(value, ms) {
     await timeout(ms); // ! 不要写同步的暂停函数。它会让你的程序卡死
+    console.warn('1');
     await timeout2(ms + 1000);
+    console.warn('2');
     console.warn(value);
   }
 
