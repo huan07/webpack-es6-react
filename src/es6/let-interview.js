@@ -1,25 +1,26 @@
 // 变量提升带来的问题
-// ! 1.变量容易在不被察觉的情况下被覆盖掉
+// ! 1.内层变量可能会覆盖外层变量
 var myname = '极客时间';
 
 function showName() {
-  console.log('showName =>', myname); // undefined
-  if (0) {
+  console.log('myname =>', myname); // undefined
+  if (1) {
     var myname = '极客邦';
   }
-  console.log(myname); // undefined
+  console.log(myname); // 极客邦
 }
 
 showName();
 
-// ! 2.本应销毁的变量没有被销毁
-function foo() {
-  for (var i = 0; i < 7; i++) {}
+// ! 2.用来计数的循环变量泄露为全局变量
+for (var i = 0; i < 7; i++) {
   console.log(i);
 }
 
-foo();
+console.log(i);
 
+//
+// todo ...
 // 变量提升，作用域
 // https://time.geekbang.org/column/article/127495
 function barB() {
@@ -44,13 +45,3 @@ var myName = '极客时间';
 let myAge = 10;
 let test = 1;
 fooF();
-
-// var命令会添加作为执行上下文的属性
-var a__ = 'var';
-{
-  let l = 'let';
-  const c = 'const';
-}
-
-console.log('window.prop =>', window, window.a__, window.l, window.c);
-console.log(a__);

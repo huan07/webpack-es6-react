@@ -6,8 +6,8 @@ const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.js'], // 测试es6, webpack
-  // entry: [paths.src + '/myReactCourse/entries/index.js'],
+  // entry: [paths.src + '/index.js'], // 测试es6, webpack
+  entry: [paths.src + '/myReactCourse/entries/index.js'],
 
   // Where webpack outputs the assets and bundles
   output: {

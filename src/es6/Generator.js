@@ -32,6 +32,8 @@ import getJSON from './foo/getJSON';
   generator.next(); // ? 需要3次next调用
 }
 
+// next方法可以带一个参数，该参数就会被当作 上一个yield表达式的返回值
+
 // yield* 表达式：返回的是一个 遍历器对象
 // 用来在 Generator 函数内部，调用另一个 Generator 函数
 {

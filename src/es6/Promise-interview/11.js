@@ -19,10 +19,14 @@ console.warn('2. hi', promise);
     console.log('3');
   }, 0);
 
-  Promise.resolve().then(() => {
-    // 微任务
-    console.log('2');
-  });
+  Promise.resolve()
+    .then(() => {
+      // 微任务
+      console.log('2');
+    })
+    .then(() => {
+      console.error('22');
+    });
 
   console.log('1'); // 同步任务
 }

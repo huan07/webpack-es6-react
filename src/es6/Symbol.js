@@ -91,7 +91,7 @@
   }
 
   const keys = Object.keys(obj);
-  console.error('对象 可枚举 实例属性 keys =>', keys);
+  console.log('对象 可枚举 实例属性 keys =>', keys);
 
   const names = Object.getOwnPropertyNames(obj);
   console.log('对象 可枚举＋不可枚举 自身属性 names =>', names);

@@ -21,13 +21,19 @@
   {
     class Point {
       constructor(x, y) {
-        this.x = x; // this => 实例对象
+        // this => 实例对象
+        this.x = x;
         this.y = y;
       }
 
       toString() {
+        // 原型方法
         return `(${this.x}, ${this.y})`;
       }
+
+      say = () => {
+        // 实例方法
+      };
     }
 
     const point = new Point(3, 4);

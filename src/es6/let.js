@@ -13,7 +13,7 @@
   }
   a[2]();
 
-  // fixed by let
+  // 1.fixed by let
   {
     let b = [];
     for (let i = 0; i < 3; i++) {
@@ -26,7 +26,7 @@
     b[2]();
   }
 
-  // fixed by IIFE
+  // 2.fixed by IIFE
   var c = [];
   for (var index = 0; index < 3; index++) {
     c[index] = (function (j) {
@@ -54,7 +54,7 @@
   var tmp = 123;
 
   if (true) {
-    tmp = 'abc'; // todo 并没有ReferenceError
+    tmp = 'abc'; // ? 并没有ReferenceError
     let tmp;
   }
 }

@@ -74,7 +74,9 @@ import getJSON from './foo/getJSON';
     .catch((err) => console.warn('Promise.race catch =>', err));
 }
 
-// TODO interview 考题4，手写 Promise.all x
+// 考题4：手写 Promise.all // todo
+// https://www.bilibili.com/video/BV18v411s7di?p=2&spm_id_from=pageDriver
+// https://www.bilibili.com/video/BV18v411s7di?p=21&spm_id_from=pageDriver Promise.allSettled
 {
   Promise.myAll = function (promises) {
     return new Promise((resolve, reject) => {

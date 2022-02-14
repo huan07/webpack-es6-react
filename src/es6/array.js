@@ -7,10 +7,10 @@
     0,
     ...[],
   ];
-  console.error('arr => ', arr);
+  console.log('arr => ', arr);
 
   console.log(...[11]);
-  // console.log(...null);  //  不是iterator数据结构，会报错 // * error
+  // console.log(...null); // 不是iterator数据结构，会报错 // * error
   // console.log(...undefined);
   console.log(...'null');
   console.log(...'undefined');
@@ -39,7 +39,7 @@
     console.log('浅拷贝 =>', a1, a2);
   }
   {
-    // es6克隆全新的数组
+    // es6克隆全新的数组，提供了简便写法
     const a1 = [5, 6];
     const a2 = [...a1];
     const [...a2_2] = a1;
@@ -62,6 +62,7 @@
   //
 }
 
+//
 // Array.from 转为真正的数组
 // 1.类似数组的对象
 // 2.部署了 Iterator 接口的数据结构
@@ -76,21 +77,6 @@
   // const toArray_2 = [...arrayLike]; // todo error
   const toArray_3 = Array.from(arrayLike);
   console.log(arrayLike, toArray, toArray_3);
-
-  {
-    const toArray = (() =>
-      Array.from ? Array.from : (obj) => Array.prototype.slice.call(obj))();
-
-    // Array.from 还可以接受第二个函数参数( 类似map功能 )
-    // example
-    {
-      const convertData = Array.from({ length: 3 }, (x) => x || 0);
-      const convertData_2 = Array.from({ length: 3 }).map((x) => x || 1);
-      console.log(Array.from({ length: 3 }), convertData, convertData_2);
-    }
-
-    // Array.from()的另一个应用是，将字符串转为数组 // TODO ??
-  }
 
   // 补充
   // ...
