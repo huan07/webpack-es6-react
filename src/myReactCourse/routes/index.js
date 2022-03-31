@@ -17,7 +17,7 @@ const routes = [
   //
   {
     path: '/JSX',
-    name: 'x JSX',
+    name: 'x2 JSX',
     main: Loadable({
       loader: () => import('../JSX'),
       loading: () => 'loading...',
@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: '/JSXInDepth',
-    name: 'x 深入JSX',
+    name: 'x2 深入JSX',
     main: Loadable({
       loader: () => import('../JSXInDepth'), // ? 需要刷新下看到console打印输出
       loading: () => 'loading...',
@@ -163,7 +163,7 @@ const routes = [
   },
   {
     path: '/RefsAndTheDOM',
-    name: 'x RefsAndTheDOM', // 父组件调用子组件中的方法
+    name: 'x2 RefsAndTheDOM', // 父组件调用子组件中的方法
     main: Loadable({
       loader: () => import('../RefsAndTheDOM'),
       loading: () => 'loading...',
@@ -177,11 +177,28 @@ const routes = [
       loading: () => 'loading...',
     }),
   },
+  //
+  {
+    path: '/Context',
+    name: 'Context',
+    main: Loadable({
+      loader: () => import('../Context'),
+      loading: () => 'loading...',
+    }),
+  },
+  {
+    path: '/createPortal',
+    // todo 路径用/ReactDOM.createPortal，刷新页面，为啥404呢？
+    name: '插槽',
+    main: Loadable({
+      loader: () => import('../ReactDOM.createPortal'),
+      loading: () => 'loading...',
+    }),
+  },
 ];
 
 export default routes;
 
 // todo
-// Context
 // Render Props
 // 高阶组件

@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 
 // 默认值
 // <input type="radio"> 和 <input type="checkbox">支持 defaultChecked，
 // 而 <input> <textarea> 和 <select>支持 defaultValue.
 class NameForm extends PureComponent {
-  textInput = React.createRef();
+  textInput = createRef();
 
   focusTextInput = () => {
-    console.warn('为 DOM 元素添加 ref', this.textInput, this.textInput.current);
+    console.warn('为 DOM 元素添加 ref', this.textInput);
 
     this.textInput.current.focus();
   };

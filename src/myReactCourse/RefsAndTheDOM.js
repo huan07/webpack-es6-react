@@ -1,30 +1,27 @@
 import React, {
   PureComponent,
+  createRef,
   forwardRef,
   useRef,
   useImperativeHandle,
 } from 'react';
-import CustomTextInput from './UnControlledComponents';
+import UnControlledComponents from './UnControlledComponents';
 
 // 1.1 为 DOM 元素添加 ref
 // 参照非受控组件demo
 
 // 1.2 为 class 组件添加 ref // ** 1.在类组件中调用子组件（>= react@16.4），可以使用 createRef
 class CustomTextInput12 extends PureComponent {
-  textInput = React.createRef();
+  textInput = createRef();
 
   componentDidMount() {
-    console.log(
-      '为 class 组件添加 Ref',
-      this.textInput,
-      this.textInput.current,
-    );
+    console.log('为 class 组件添加 ref', this.textInput);
 
     this.textInput.current.focusTextInput();
   }
 
   render() {
-    return <CustomTextInput ref={this.textInput} />;
+    return <UnControlledComponents ref={this.textInput} />;
   }
 }
 
@@ -36,7 +33,7 @@ function CustomTextInputFun(props) {
   const inputRef = useRef(null);
 
   function handleClick() {
-    console.log('CustomTextInputFun inputRef =>', inputRef, inputRef.current);
+    console.log('CustomTextInputFun inputRef =>', inputRef);
 
     inputRef.current.focus();
   }
@@ -53,7 +50,7 @@ function CustomTextInputFun(props) {
   );
 }
 
-// ** 2.在函数组件中调用子组件（>= react@16.8），可以使用 useRef 和 useImperativeHandle
+// ** 2.在函数组件中调用子组件（>= react@16.8），可以使用 forwardRef 和 useImperativeHandle
 const Child = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     getAlert() {
@@ -139,11 +136,15 @@ class CustomTextInput3 extends PureComponent {
 
 export default () => (
   <>
-    <CustomTextInput />
+    <UnControlledComponents />
     <br />
     <CustomTextInput12 />
     <br />
+
+    <hr />
     <CustomTextInputFun />
+    <hr />
+
     <Parent />
     <hr />
 

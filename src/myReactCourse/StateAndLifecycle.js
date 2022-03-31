@@ -27,7 +27,7 @@ class Clock2 extends PureComponent {
   }
 
   componentWillUnmount() {
-    // 在组件被销毁时释放所占用的资源 // !
+    // 在组件被销毁时释放所占用的资源 // ! good
     this.timerID && clearInterval(this.timerID); // !, 虽然直接写 clearInterval(this.timerID) 不会报错
   }
 

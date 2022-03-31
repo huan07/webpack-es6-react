@@ -6,7 +6,7 @@
 // Set 函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数
 {
   const s = new Set();
-  console.log('Set =>', s);
+  console.log(s);
 }
 {
   const s = new Set([1, 2, 3, 4, 4, 3, 2, 1, '1']);

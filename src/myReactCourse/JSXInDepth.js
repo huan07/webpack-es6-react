@@ -15,7 +15,7 @@ const element = (
   </MyButton>
 );
 
-const element2 = React.createElement(
+const element_2 = React.createElement(
   MyButton, // ! 1.自定义组件首字母大写
   {
     color: 'blue 2',
@@ -34,7 +34,7 @@ const ele = React.createElement(
 );
 
 console.log('element =>', element);
-console.log('element2 =>', element2);
+console.log('element_2 =>', element_2);
 console.log('ele =>', ele);
 
 //
@@ -137,7 +137,7 @@ const MyElement84 = () => {
 export default () => (
   <>
     {element}
-    {element2}
+    {element_2}
     {ele}
     <hr />
     <hr />
